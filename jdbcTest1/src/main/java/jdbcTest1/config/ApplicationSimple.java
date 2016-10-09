@@ -2,6 +2,7 @@ package jdbcTest1.config;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import jdbcTest1.model.Customer;
@@ -39,6 +40,10 @@ public class ApplicationSimple {
 				Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM customers", Integer.class);
 				
 				log.info("Counting number of customers:" + count);
+				
+				Map<String, Object> map = jdbcTemplate.queryForMap("SELECT * FROM customers where id = ?", 1);
+				
+				log.info("Getting customer where id = 1:" + map);
 			}
 
 			private void createTable() {
